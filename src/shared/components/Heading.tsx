@@ -265,8 +265,7 @@ const HeadingLogoText = styled.div`
 export const HeadingLogoImage = () => <Image alt="Logo" src={'/images/logo/logo.png'} width={45} height={45} />
 
 export const HeadingLogo = () => <HeadingLogoContainer>
-  {/* <HeadingLogoA href='https://teocloud.io'> */}
-  <HeadingLogoA href='/'>
+  <HeadingLogoA href='https://teocloud.io'>
     <HeadingLogoImageContainer>
       <HeadingLogoImage />
     </HeadingLogoImageContainer>
@@ -389,9 +388,9 @@ const Heading = () => {
       <HeadingConstraint>
         <HeadingLeft>
           <HeadingLogo />
-          <HeadingNavArea>
+          {/* <HeadingNavArea>
             <HeadingNavItemsReused />
-          </HeadingNavArea>
+          </HeadingNavArea> */}
         </HeadingLeft>
         <HeadingRight>
           <HeadingIconLinks>
