@@ -75,7 +75,7 @@ let withMDX = mdx({
                         {
                             id: 'teo',
                             scopeName: 'source.teo',
-                            path: '../../../../../langs/teo.json',
+                            path: '../../langs/teo.json',
                         },
                     ],
                 }),
