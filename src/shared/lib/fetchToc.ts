@@ -4,7 +4,7 @@ export interface TocItem {
     title: string
     author: string
     urlPath: string
-    date: string
+    date: Date
     orderHint?: number
     children: TocItem[]
     time?: string

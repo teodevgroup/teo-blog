@@ -203,19 +203,22 @@ const renderChildren = (children: TocItem[], path: string, setSidebarVisible: (v
 }
 
 const SidebarWithToc: (props: { item: TocItem, path: string, phoneOpen?: boolean, setSidebarVisible: (v: boolean) => void }) => ReactElement = (props) => {
+  console.log(props.item.children)
   return <BlogSidebarContainer style={{ 'display': props.phoneOpen ? "block" : "none" }}>
     <BlogSideBarSearchInput />
     <BlogSidebarTitle>{props.item.title}</BlogSidebarTitle>
-    {props.item.children.map((child) => {
-      if (child.children.length) {
-        return [
-          <BlogSidebarSectionTitle key="__sidebar__title">{child.title}</BlogSidebarSectionTitle>,
-          ...renderChildren(child.children, props.path, props.setSidebarVisible)
-        ]
-      } else {
-        return <BlogSidebarItem key={child.urlPath} path={props.path} link={child.urlPath} title={child.title} time={child.time} setSidebarVisible={props.setSidebarVisible} />
-      }
-    })}
+    {props.item.children
+      .sort((a, b) => b.date.getTime() - a.date.getTime())
+      .map((child) => {
+        if (child.children.length) {
+          return [
+            <BlogSidebarSectionTitle key="__sidebar__title">{child.title}</BlogSidebarSectionTitle>,
+            ...renderChildren(child.children, props.path, props.setSidebarVisible)
+          ]
+        } else {
+          return <BlogSidebarItem key={child.urlPath} path={props.path} link={child.urlPath} title={child.title} time={child.time} setSidebarVisible={props.setSidebarVisible} />
+        }
+      })}
   </BlogSidebarContainer>
 }
 

@@ -21,7 +21,7 @@ export const globals = css`
       color: inherit;
       text-decoration: inherit;
     }
-    metadata{
+    #metadata {
       width: 100%;
       padding: 8px 0;
       ${flexColumn('flex-start')}
