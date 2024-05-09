@@ -10,7 +10,6 @@ import remarkToc from 'remark-toc'
 import { getHighlighter, BUNDLED_LANGUAGES } from 'shiki'
 import { search } from '@teocloud/teo-docs-search-engine'
 
-import breadcrumb from './plugins/breadcrumb.mjs'
 import dataCopy from './plugins/dataCopy.mjs'
 import onThisPage from './plugins/onThisPage.mjs'
 import prevNext from './plugins/prevNext.mjs'
@@ -83,7 +82,6 @@ let withMDX = mdx({
             dataCopy,
             tableOfContents,
             prevNext,
-            // breadcrumb,
             onThisPage,
             articleData,
         ],
@@ -94,6 +92,11 @@ let withMDX = mdx({
 /** @type {import('next-with-linaria').LinariaConfig} */
 const config = {
     pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
-};
+    experimental: {
+        serverActions: {
+            allowedOrigins: ['blog.teocloud.io', 'docker-teo-blog']
+        }
+    }
+}
 
-export default withMDX(withLinaria(config));
+export default withMDX(withLinaria(config))
