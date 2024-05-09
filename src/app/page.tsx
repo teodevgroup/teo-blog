@@ -1,4 +1,4 @@
-import { NextPage, NextPageContext } from "next";
+import { NextPage } from "next";
 import { serialize } from 'next-mdx-remote/serialize';
 import { styled } from "@linaria/react";
 import { User, Calendar } from "react-feather";
@@ -65,7 +65,7 @@ const ArticleDataText = styled.div`
 const BlogHomeConstraint = styled.div`
 `
 
-const BlogHome: NextPage<BlogPageProps> = async () => {
+const BlogHome: NextPage = async () => {
   const dirname = './src/app/articles'
   const files = fs.readdirSync(dirname).filter((file) => !file.endsWith('.mdx'))
   const articles: BlogPageArticle[] = (await Promise.all(files.map(async (filename) => {

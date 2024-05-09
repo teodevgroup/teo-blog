@@ -7,9 +7,9 @@ export interface SearchRecord {
 }
 
 export default async function fetchSearchResult(query: string): Promise<SearchRecord[]> {
-    const items = global.blogSearch(`"${query}"`)
+    const items = (global as any).blogSearch(`"${query}"`)
     const result = items.map((item: any) => {
-        const tocItem = global.blogFetchToc(item.urlPath)
+        const tocItem = (global as any).blogFetchToc(item.urlPath)
         if (!tocItem) {
             return undefined
         }
@@ -23,5 +23,5 @@ export default async function fetchSearchResult(query: string): Promise<SearchRe
             // breadcrumb,
         }
     })
-    return result.filter((r) => r !== undefined)
+    return result.filter((r: any) => r !== undefined)
 }

@@ -11,5 +11,5 @@ export interface TocItem {
 }
 
 export default async function fetchToc(path: string): Promise<TocItem | undefined> {
-    return global.blogFetchToc(path)
+    return (global as any).blogFetchToc(path)
 }
