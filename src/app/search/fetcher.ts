@@ -3,7 +3,6 @@
 export interface SearchRecord {
     title: string
     urlPath: string
-    // breadcrumb: any
 }
 
 export default async function fetchSearchResult(query: string): Promise<SearchRecord[]> {
@@ -13,14 +12,9 @@ export default async function fetchSearchResult(query: string): Promise<SearchRe
         if (!tocItem) {
             return undefined
         }
-        // const breadcrumb = global.blogFetchBreadcrumb(item.urlPath)
-        // if (!breadcrumb || breadcrumb.length === 0) {
-        //     return undefined
-        // }
         return {
             title: tocItem.title,
             urlPath: item.urlPath,
-            // breadcrumb,
         }
     })
     return result.filter((r: any) => r !== undefined)

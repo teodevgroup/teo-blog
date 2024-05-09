@@ -5,8 +5,7 @@ import { User, Calendar } from "react-feather";
 import fs from 'fs';
 import path from 'path';
 
-import { flexColumn, dark, flexRow, light, borderColorLight, borderColorDark, blogFontDarkColor } from "@/shared/styles/theme";
-
+import { flexColumn, dark, flexRow, light, borderColorLight, borderColorDark } from "@/shared/styles/theme";
 
 type BlogPageArticle = {
   slug: string
@@ -15,52 +14,48 @@ type BlogPageArticle = {
   createdAt: string
 }
 
-type BlogPageProps = {
-  articles: BlogPageArticle[]
-}
-
 const ArticleItem = styled.div`
-    width: 100%;
-    padding: 8px 0;
-    :not(:last-child) {
-      ${light} {
-        border-bottom: 1px solid ${borderColorLight};
-      }
-      ${dark} {
-        border-bottom: 1px solid ${borderColorDark};
-      }
+  width: 100%;
+  padding: 8px 0;
+  :not(:last-child) {
+    ${light} {
+      border-bottom: 1px solid ${borderColorLight};
     }
-    ${flexColumn('flex-start')}
-  `
+    ${dark} {
+      border-bottom: 1px solid ${borderColorDark};
+    }
+  }
+  ${flexColumn('flex-start')}
+`
 
 const ArticleTitle = styled.a`
-    font-size: 32px;
-    font-weight: 600;
-    text-decoration: none;
-  `
+  font-size: 32px;
+  font-weight: 600;
+  text-decoration: none;
+`
 
 const ArticleData = styled.div`
-    ${flexRow('center')}
-    color: #a9a9aa;
-    font-weight: 300;
-    font-size: 14px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-  `
+  ${flexRow('center')}
+  color: #a9a9aa;
+  font-weight: 300;
+  font-size: 14px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+`
 
 const ArticleDataItem = styled.div`
-    ${flexRow('center')}
-    width: 140px;
-  `
+  ${flexRow('center')}
+  width: 140px;
+`
 
 const ArticleDataItem2 = styled.div`
-    ${flexRow('center')}
-    width: 300px;
-  `
+  ${flexRow('center')}
+  width: 300px;
+`
 
 const ArticleDataText = styled.div`
-    margin-left: 8px;
-  `
+  margin-left: 8px;
+`
 
 const BlogHomeConstraint = styled.div`
 `
