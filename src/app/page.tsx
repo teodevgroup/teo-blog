@@ -6,7 +6,7 @@ import fs from 'fs'
 import path from 'path'
 import { format } from 'date-fns'
 
-import { flexColumn, dark, flexRow, light, lightBackground, darkBackground, spacing, panelBoxShadow } from "@/shared/styles/theme"
+import { flexColumn, dark, flexRow, light, lightBackground, darkBackground, spacing, panelBoxShadow, desktopHD, phone, exceptPhone, desktop, tablet, phoneLandscape, phonePortrait, exceptPhonePortrait, darkHeadingBackgroundColor } from "@/shared/styles/theme"
 import Image from "next/image"
 
 type BlogPageArticle = {
@@ -16,32 +16,68 @@ type BlogPageArticle = {
   createdAt: string
 }
 
+const HomeArticleCardContents = styled.div`
+  padding: 8px;
+  width: 100%;
+  transition: background-color 0.25s ease-in-out 0s;
+`
+
 const HomeArticleCard = styled.a`
   display: block;
   margin-bottom: 20px;
-  ${light} {
-    background-color: ${lightBackground};
+  ${phonePortrait} {
+    width: 100%;
   }
-  ${dark} {
-    background-color: ${darkBackground};
+  ${phoneLandscape} {
+    width: calc((100% - 20px) / 2);
+    &:not(:nth-child(2n)) {
+      margin-right: 20px;
+    }
   }
-  width: calc((100% - 60px) / 4);
-  &:not(:nth-child(4n)) {
-    margin-right: 20px;
+  ${tablet} {
+    width: calc((100% - 20px) / 2);
+    &:not(:nth-child(2n)) {
+      margin-right: 20px;
+    }
+  }
+  ${desktop} {
+    width: calc((100% - 40px) / 3);
+    &:not(:nth-child(3n)) {
+      margin-right: 20px;
+    }
+  }
+  ${desktopHD} {
+    width: calc((100% - 60px) / 4);
+    &:not(:nth-child(4n)) {
+      margin-right: 20px;
+    }
   }
   border-radius: ${spacing}px;
   ${flexColumn('flex-start')}
   overflow: hidden;
   box-shadow: ${panelBoxShadow};
   transition: transform 0.25s ease-in-out 0s;
+  ${HomeArticleCardContents} {
+    ${light} {
+      background-color: ${lightBackground};
+    }
+    ${dark} {
+      background-color: ${darkHeadingBackgroundColor};
+    }
+  }  
   &:hover {
-    transform: translateY(-8px);
+    ${exceptPhonePortrait} {
+      transform: translateY(-8px);
+    }
+    ${HomeArticleCardContents} {
+      ${light} {
+        background-color: #F6F6F8;
+      }
+      ${dark} {
+        background-color: #2E2E31;
+      }
+    }
   }
-`
-
-const HomeArticleCardContents = styled.div`
-  padding: 8px;
-  width: 100%;
 `
 
 const HomeArticleCardTitle = styled.div`
@@ -75,14 +111,35 @@ const HomeArticleSubtitleText = styled.div`
 `
 
 const HomeArticles = styled.div`
-  ${flexRow("flex-start")}
-  justify-content: flex-start;
-  flex-wrap: wrap;
+  ${phone} {
+    ${flexRow("flex-start")}
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  ${exceptPhone} {
+    ${flexRow("flex-start")}
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
 `
 
-const HomeArticleCoverImage = styled.div`
+const HomeArticleCoverImageContainer = styled.div`
   width: 100%;
-  height: 162px;
+  ${desktopHD} {
+    height: 180px;
+  }
+  ${desktop} {
+    height: 220px;
+  }
+  ${tablet} {
+    height: 260px;
+  }
+  ${phoneLandscape} {
+    height: 240px;
+  }
+  ${phonePortrait} {
+    height: 220px;
+  }
   position: relative;
   overflow: hidden;
   & > img {
@@ -93,6 +150,13 @@ const HomeArticleCoverImage = styled.div`
     right: -9999px;
     margin: auto;
   }
+`
+
+const HomeArticleCoverImage = styled.img`
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
 `
 
 const BlogHome: NextPage = async () => {
@@ -117,9 +181,9 @@ const BlogHome: NextPage = async () => {
     <HomeArticles>
       {articles.map((article) => {
         return <HomeArticleCard key={article.slug} href={`/articles/${article.slug}`}>
-          <HomeArticleCoverImage>
-            <Image alt="Cover Image" src='/images/defaultart.png' width={360} height={162} objectFit='contain' />
-          </HomeArticleCoverImage>
+          <HomeArticleCoverImageContainer>
+            <HomeArticleCoverImage alt="Cover Image" src='/images/defaultart.png' />
+          </HomeArticleCoverImageContainer>
           <HomeArticleCardContents>
             <HomeArticleCardTitle>{article.title}</HomeArticleCardTitle>
             <HomeArticleSubtitles>
