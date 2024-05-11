@@ -265,7 +265,7 @@ const HeadingLogoText = styled.div`
 export const HeadingLogoImage = () => <Image alt="Logo" src={'/images/logo/logo.png'} width={45} height={45} />
 
 export const HeadingLogo = () => <HeadingLogoContainer>
-  <HeadingLogoA href='https://teocloud.io'>
+  <HeadingLogoA href='https://teodev.io'>
     <HeadingLogoImageContainer>
       <HeadingLogoImage />
     </HeadingLogoImageContainer>
@@ -280,19 +280,19 @@ const HeadingNavItemsReused = () => {
   const pathname = usePathname()
   return <HeadingNavItems>
     <HeadingNavItem>
-      <HeadingNavItemA href='https://www.teocloud.io/developer-tools' selected={false}>Developer Tools</HeadingNavItemA>
+      <HeadingNavItemA href='https://www.teodev.io/developer-tools' selected={false}>Developer Tools</HeadingNavItemA>
     </HeadingNavItem>
     <HeadingNavItem>
-      <HeadingNavItemA href='https://teocloud.io/community' selected={false}>Community</HeadingNavItemA>
+      <HeadingNavItemA href='https://teodev.io/community' selected={false}>Community</HeadingNavItemA>
     </HeadingNavItem>
     <HeadingNavItem>
-      <HeadingNavItemA href='https://docs.teocloud.io/' selected={false}>Docs</HeadingNavItemA>
+      <HeadingNavItemA href='https://docs.teodev.io/' selected={false}>Docs</HeadingNavItemA>
     </HeadingNavItem>
     <HeadingNavItem>
       <HeadingNavItemA href='/' selected={pathname.startsWith('/')}>Blog</HeadingNavItemA>
     </HeadingNavItem>
     <HeadingNavItem>
-      <HeadingNavItemA href='https://www.teocloud.io/company' selected={false}>Company</HeadingNavItemA>
+      <HeadingNavItemA href='https://www.teodev.io/company' selected={false}>Company</HeadingNavItemA>
     </HeadingNavItem>
   </HeadingNavItems>
 }

@@ -94,7 +94,7 @@ const config = {
     pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
     experimental: {
         serverActions: {
-            allowedOrigins: ['blog.teocloud.io', 'docker-teo-blog']
+            allowedOrigins: ['blog.teodev.io', 'blog.teocloud.io', 'docker-teo-blog']
         }
     }
 }
