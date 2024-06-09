@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation'
 import React, { useState } from 'react'
 import { Menu } from 'react-feather'
 
-import { GitHubIcon, GiteeIcon, PatreonIcon, SlackIcon, XIcon } from './Icons'
+import { GitHubIcon, PatreonIcon, SlackIcon, XIcon } from './Icons'
 import Constraint from './Constraint'
 
 import { anyDesktop, contentBackgroundColor, dark, darkContentBackGroundColor, darkHeadingBackgroundColor, exceptPhone, flexColumn, flexRow, light, phone, tablet, tabletAndDesktop, tintColor, tintFontStack } from '../styles/theme'
@@ -353,14 +353,6 @@ export const HeadingSlackButton = () => {
   </HeadingIconA>
 }
 
-export const HeadingGiteeButton = () => {
-  return <HeadingIconA href='https://gitee.com/teocloud/teo' target="_blank">
-    <GiteeIcon width={32} height={32} style={{
-      transition: "0.2s all ease-in-out 0s"
-    }} />
-  </HeadingIconA>
-}
-
 export const HeadingGitHubButton = () => {
   return <HeadingIconA href='https://github.com/teodevgroup/teo' target="_blank">
     <GitHubIcon width={32} height={32} style={{
@@ -382,7 +374,6 @@ const Heading = () => {
         <HeadingNavItemsReused />
         <HeadingIconLinks>
           <HeadingGitHubButton />
-          <HeadingGiteeButton />
         </HeadingIconLinks>
       </HeadingMenuContainer>
       <HeadingConstraint>
@@ -395,7 +386,6 @@ const Heading = () => {
         <HeadingRight>
           <HeadingIconLinks>
             <HeadingGitHubButton />
-            <HeadingGiteeButton />
           </HeadingIconLinks>
           <HeadingMenuButton onClick={() => setShowMenu(!showMenu)} showMenu={showMenu}>
             <Menu size={20} />
