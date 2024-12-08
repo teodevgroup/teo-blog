@@ -168,7 +168,7 @@ const BlogSidebarItem: (props: BlogSidebarItemProps) => ReactElement = ({ link, 
   }
   return <>
     <BlogSidebarItemTitleContainer>
-      <Link href={link} className={blogSidebarItemTitleLinkClassName} onClick={(e) => {
+      <a href={link} className={blogSidebarItemTitleLinkClassName} onClick={(e) => {
         e.stopPropagation()
         setSidebarVisible(false)
       }}>
@@ -182,7 +182,7 @@ const BlogSidebarItem: (props: BlogSidebarItemProps) => ReactElement = ({ link, 
           <div>{title}</div>
           {time ? <BlogSidebarItemTitleTime>{time}</BlogSidebarItemTitleTime> : null}
         </BlogSidebarItemTitleLine>
-      </Link>
+      </a>
     </BlogSidebarItemTitleContainer>
     {open ?
       <BlogSidebarItemInner>
