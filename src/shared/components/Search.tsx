@@ -64,7 +64,7 @@ export const FullWidthSearchInput = ({ defaultValue }: {
   defaultValue?: string
 }) => {
   return <FullWidthSearchInputContainer>
-    <SearchInput defaultValue={defaultValue} placeholder='Search Blog...' onKeyUp={(e) => {
+    <SearchInput defaultValue={defaultValue} placeholder='Search Blog...' onKeyUp={(e: any) => {
       if (e.key === 'Enter' || e.keyCode === 13) {
         location.href = `/search?q=${encodeURIComponent(e.currentTarget.value)}`
       }

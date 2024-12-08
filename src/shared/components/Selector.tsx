@@ -454,9 +454,9 @@ export const FastSelector = (props: FastSelectorProps) => {
       position: absolute;
     `}>
       {Children.map(props.children, (child, index) => {
-        return cloneElement(child, {
+        return cloneElement(child as any, {
           onClick: () => {
-            if (!child.props.disabled) {
+            if (!(child as any).props.disabled) {
               setIndex(index)
               setExpanded(false)
             }

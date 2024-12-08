@@ -1,8 +1,7 @@
-'use client'
+'use server'
 
-import { useEffect, useState } from "react"
 import { FullWidthSearchInput } from "../../shared/components/Search"
-import fetchSearchResult, { SearchRecord } from "./fetcher"
+import fetchSearchResult from "./fetcher"
 import { styled } from "@linaria/react"
 import { blogTitleFontFamily } from "../../shared/styles/theme"
 
@@ -21,20 +20,14 @@ const SearchRecordView = styled.div`
     display: block;
 `
 
-const SearchPage = ({ searchParams }: {
-    searchParams: { [key: string]: string | string[] | undefined }
-}) => {
+const SearchPage = async ({ searchParams: searchParamsPromise }: any) => {
+    const searchParams = await searchParamsPromise
     const original = searchParams["q"] as string | undefined
-    const [items, setItems] = useState<SearchRecord[]>([])
-    useEffect(() => {
-        if (original) {
-            fetchSearchResult(original).then((result) => setItems(result))
-        }
-    }, [])
+    const items = await fetchSearchResult(original as any)
     return <div style={{ width: '100%' }}>
         <FullWidthSearchInput defaultValue={original as string | undefined} />
         {items.map((item) => <SearchRecordView key={item.urlPath}>
-            <SearchRecordTitle href={item.urlPath}>{item.title}</SearchRecordTitle>
+            <SearchRecordTitle href={item.urlPath} key={item.urlPath}>{item.title}</SearchRecordTitle>
         </SearchRecordView>)}
     </div>
 }

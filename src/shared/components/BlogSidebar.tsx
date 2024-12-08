@@ -298,7 +298,7 @@ const BlogSideBarInputContainer = styled.div`
 
 const BlogSideBarSearchInput = () => {
   return <BlogSideBarInputContainer>
-    <SearchInput placeholder='Search Blog...' onKeyUp={(e) => {
+    <SearchInput placeholder='Search Blog...' onKeyUp={(e: any) => {
       if (e.key === 'Enter' || e.keyCode === 13) {
         location.href = `/search?q=${encodeURIComponent(e.currentTarget.value)}`
       }
