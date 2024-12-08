@@ -1,20 +1,17 @@
-'use client'
+'use server'
 
-import { usePathname } from "next/navigation"
 import React from "react"
 import { css } from '@linaria/core'
 import { contentFontStack, dark, darkBackground, darkContent, light, lightBackground, lightContent } from "../styles/theme"
-import { BlogContent, BlogLayout } from "./Blog"
+import { BlogLayout } from "./Blog"
 import { BlogSidebar } from "./BlogSidebar"
 
 
-export default function Main({
+export default async function Main({
     children
 }: {
     children: React.ReactNode
 }) {
-    const pathname = usePathname()
-
     return (
         <body className={css`
             margin: 0;
@@ -29,8 +26,8 @@ export default function Main({
                 }
                 font-family: ${contentFontStack};
         `}>
-            <BlogLayout path={pathname}>
-                <BlogSidebar path={pathname} />
+            <BlogLayout>
+                <BlogSidebar />
                 {children}
             </BlogLayout>
         </body>

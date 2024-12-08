@@ -969,7 +969,6 @@ export const H6 = (props: HeadingProps) => {
 
 
 type BlogLayoutProps = {
-  path: string,
   children: ReactNode
 }
 
