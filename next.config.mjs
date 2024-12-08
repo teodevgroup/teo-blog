@@ -7,9 +7,10 @@ import rehypeSlug from 'rehype-slug'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkGfm from 'remark-gfm'
 import remarkToc from 'remark-toc'
-import { getHighlighter, BUNDLED_LANGUAGES } from 'shiki'
+import { getSingletonHighlighter, bundledLanguagesInfo } from 'shiki'
+import { createCssVariablesTheme } from 'shiki/core'
 import { search } from '@teocloud/teo-docs-search-engine'
-
+import { readFileSync } from 'fs'
 import dataCopy from './plugins/dataCopy.mjs'
 import onThisPage from './plugins/onThisPage.mjs'
 import prevNext from './plugins/prevNext.mjs'
@@ -67,15 +68,17 @@ let withMDX = mdx({
                 onVisitHighlightedWord(node) {
                     node.properties.className = ['word']
                 },
-                getHighlighter: (options) => getHighlighter({
+                getHighlighter: (options) => getSingletonHighlighter({
                     ...options,
+                    themes: [createCssVariablesTheme({ 
+                        name: 'css-variables',
+                        variablePrefix: '--shiki-',
+                        variableDefaults: {},
+                        fontStyle: true
+                    })],
                     langs: [
-                        ...BUNDLED_LANGUAGES,
-                        {
-                            id: 'teo',
-                            scopeName: 'source.teo',
-                            path: process.cwd() + '/langs/teo.json',
-                        },
+                        ...bundledLanguagesInfo.map((lang) => lang.id),
+                        () => JSON.parse(readFileSync("./langs/teo.json", "utf-8")),
                     ],
                 }),
             }],

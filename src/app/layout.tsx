@@ -1,6 +1,5 @@
 import { Viewport } from "next"
 import Main from "../shared/components/Main"
-import { headers } from "next/headers"
 import React from "react"
 
 export async function generateViewport(): Promise<Viewport> {
@@ -10,8 +9,6 @@ export async function generateViewport(): Promise<Viewport> {
 }
 
 export async function generateMetata() {
-    // const headersList = headers()
-    // const pathName = headersList.get('x-request-pathname') as string
     return {
         title: 'TEO Blog',
         description: 'TEO Blog',

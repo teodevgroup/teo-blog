@@ -172,10 +172,7 @@ const BlogHome: NextPage = async () => {
       createdAt: mdxSource.frontmatter!['date'] as any,
       artwork: undefined,
     }
-  }))).sort((a, b) => a.createdAt < b.createdAt ? 1 : -1).map((a) => {
-    a.createdAt = (a.createdAt as Date).toJSON()
-    return a
-  })
+  }))).sort((a, b) => a.createdAt < b.createdAt ? 1 : -1)
 
   return (
     <HomeArticles>
