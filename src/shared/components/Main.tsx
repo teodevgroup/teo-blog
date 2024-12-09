@@ -3,8 +3,8 @@
 import React from "react"
 import { css } from '@linaria/core'
 import { contentFontStack, dark, darkBackground, darkContent, light, lightBackground, lightContent } from "../styles/theme"
-import { BlogLayout } from "./Blog"
 import { BlogSidebar } from "./BlogSidebar"
+import { BlogLayout } from "./BlogLayout"
 
 
 export default async function Main({

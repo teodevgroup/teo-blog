@@ -1,7 +1,6 @@
 'use client'
 
 import React, { ReactElement, ReactNode, useState } from 'react'
-import Link from 'next/link'
 import { styled } from '@linaria/react'
 import { css } from '@linaria/core'
 import { dark, darkHeadingBackgroundColor, blogFontFamily, blogTagBackgroundColor, blogTagBackgroundColorDark, blogTagColor, blogTagColorDark, blogTextColor, blogTextColorDark, blogTextSelectedColor, blogTextUnselectedColor, exceptPhone, flexColumn, flexRow, light, margin, phone, spacing, tintColor } from '../styles/theme'
@@ -203,7 +202,6 @@ const renderChildren = (children: TocItem[], path: string, setSidebarVisible: (v
 }
 
 const SidebarWithToc: (props: { item: TocItem, path: string, phoneOpen?: boolean, setSidebarVisible: (v: boolean) => void }) => ReactElement = (props) => {
-  console.log(props.item.children)
   return <BlogSidebarContainer style={{ 'display': props.phoneOpen ? "block" : "none" }}>
     <BlogSideBarSearchInput />
     <BlogSidebarTitle>{props.item.title}</BlogSidebarTitle>
