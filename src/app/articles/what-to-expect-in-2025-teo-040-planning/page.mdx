@@ -1,0 +1,79 @@
+---
+title: What to expect in 2025? Teo 0.4.0 planning
+author: Victor Teo
+date: 2024-12-16T14:00:49.709Z
+---
+
+In the year end of 2024, I published Teo 0.3.8, which is the best version for 
+now. The features are complete. The supported platforms are complete, too.
+
+A backend framework should have great user experience. I look at the current 
+feature set of Teo, and there are still things need to be improved. Current 
+issues include:
+1. The language parser and type checker is slow
+2. The hooking point of writing custom handlers and pipe segments are not 
+intuitive.
+3. For some developers, generating the entities are annoying. They tend to 
+prefer writing in a single language.
+4. The ORM apis are not as great as synthesized handlers and they cause
+complexities.
+5. The permission checking is not easy to use.
+
+I designed a new version with breaking changes to fix the all the above issues
+and bring great new features.
+
+## Language
+
+The new Teo language is a great overhaul over the current one. Scripting 
+ability is added. With this, we could write permission checking easier. And
+even more, we could write route handlers, pipe segments in the scripting files.
+
+The new language unifies handler, decorators, and pipe segments into function.
+The name conflicts if duplicated. This is for the sake of extending Teo with
+programming language traits and classes.
+
+## Language parser and type checker
+
+The performance of the current parser and type checker is noticeably slow. To
+support scripting and increase performance. I decide to rewrite the parser and
+type checker. I will also introduce a interpreter for developers to play 
+around TEO language.
+
+## Removal of ORM api
+
+The ORM object can persist even out of transactions. This created a lot of 
+complexities when I implemented it. The ORM api lacks some features like
+`upsert`. I decide to remove ORM api and introduce a better way to interact
+the database which is `fragment`.
+
+## Fragment
+
+Fragment is a piece of code, which is an async function that takes a TEON input 
+and returns a TEON output. Let's say, to create a database record, we take the
+data input, selected output fields and selected relations, to manipulate the
+database, and generate the output. Current synthesized handlers all do this
+way. Fragment should be used internally and it's the building block of user's 
+HTTP API set.
+
+Fragment can do permission checking by `@canAccess`. The synthesized handlers
+will just be wrappers around the synthesized fragments.
+
+User can define his own fragments and call the fragments in the fragments. This
+way, we unified the API code sharing and database access. A fragment named
+`sql` will be synthesized for SQL database environment, too.
+
+## No schema
+
+The new version of Teo supports pure programming language. The schema is not 
+required to run TEO servers. Define configs, declare models and handlers, 
+directly with programming language like Node.js and Python.
+
+## ORM only & server only
+
+Teo has a great ORM inside, I will update the API structure to allow developers
+to use the ORM or the server exclusively.
+
+## Release plan
+
+This new version is planned to be released in May, 2025. And it may delay.
+Before the end of 2025 comes, it will be released anyway.
